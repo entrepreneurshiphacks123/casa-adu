@@ -1,390 +1,360 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #b76ff7; -webkit-text-stroke: #b76ff7}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #36c0a0; -webkit-text-stroke: #36c0a0}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #71c083; -webkit-text-stroke: #71c083}
-    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #cacaca; -webkit-text-stroke: #cacaca; min-height: 16.0px}
-    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #d4d4d4; -webkit-text-stroke: #d4d4d4}
-    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Menlo; color: #6d7378; -webkit-text-stroke: #6d7378}
-    span.s1 {font-kerning: none; color: #b76ff7; background-color: #171818; -webkit-text-stroke: 0px #b76ff7}
-    span.s2 {font-kerning: none; background-color: #171818}
-    span.s3 {font-kerning: none; color: #36c0a0; background-color: #171818; -webkit-text-stroke: 0px #36c0a0}
-    span.s4 {font-kerning: none; color: #d4d4d4; background-color: #171818; -webkit-text-stroke: 0px #d4d4d4}
-    span.s5 {font-kerning: none; color: #71c083; background-color: #171818; -webkit-text-stroke: 0px #71c083}
-    span.s6 {font-kerning: none; color: #cacaca; background-color: #171818; -webkit-text-stroke: 0px #cacaca}
-    span.s7 {font-kerning: none}
-    span.s8 {font-kerning: none; color: #f67c30; background-color: #171818; -webkit-text-stroke: 0px #f67c30}
-    span.s9 {font-kerning: none; color: #ee2e38; background-color: #171818; -webkit-text-stroke: 0px #ee2e38}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">import</span><span class="s2"> </span><span class="s3">React</span><span class="s4">,</span><span class="s2"> </span><span class="s4">{</span><span class="s2"> useState</span><span class="s4">,</span><span class="s2"> useEffect </span><span class="s4">}</span><span class="s2"> </span><span class="s1">from</span><span class="s2"> </span><span class="s5">'react'</span><span class="s4">;</span></p>
-<p class="p2"><span class="s2">import</span><span class="s6"> </span><span class="s4">{</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">Home</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">TrendingUp</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">Users</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">CheckCircle2</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">MapPin</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">ArrowRight</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">Menu</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">X</span><span class="s4">,</span><span class="s2"><span class="Apple-converted-space"> </span></span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">ChevronRight</span><span class="s4">,</span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">ShieldCheck</span><span class="s4">,</span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">Hammer</span><span class="s4">,</span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">FileText</span><span class="s4">,</span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">Loader2</span><span class="s4">,</span></p>
-<p class="p3"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">MailCheck</span></p>
-<p class="p4"><span class="s4">}</span><span class="s6"> </span><span class="s1">from</span><span class="s6"> </span><span class="s2">'lucide-react'</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p6"><span class="s1">const</span><span class="s6"> </span><span class="s3">App</span><span class="s6"> </span><span class="s2">=</span><span class="s6"> </span><span class="s2">()</span><span class="s6"> </span><span class="s2">=&gt;</span><span class="s6"> </span><span class="s2">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">isScrolled</span><span class="s4">,</span><span class="s2"> setIsScrolled</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">isMenuOpen</span><span class="s4">,</span><span class="s2"> setIsMenuOpen</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">rentValue</span><span class="s4">,</span><span class="s2"> setRentValue</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">(</span><span class="s8">1800</span><span class="s4">);</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">  </span></span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">// Links</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s6"> dmLink </span><span class="s4">=</span><span class="s6"> </span><span class="s2">"https://www.instagram.com/direct/t/17842404066666262/"</span><span class="s4">;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s6"> instagramProfile </span><span class="s4">=</span><span class="s6"> </span><span class="s2">"https://www.instagram.com/casaadu"</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">// Form State</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">formData</span><span class="s4">,</span><span class="s2"> setFormData</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">({</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>name</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>email</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>address</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">    </span>goal</span><span class="s4">:</span><span class="s6"> </span><span class="s2">'Rental Income'</span></p>
-<p class="p6"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">});</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">isSubmitting</span><span class="s4">,</span><span class="s2"> setIsSubmitting</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">[</span><span class="s2">isSubmitted</span><span class="s4">,</span><span class="s2"> setIsSubmitted</span><span class="s4">]</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> useState</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">// Brand Colors Updated to Neon Lime</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> colors </span><span class="s4">=</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">    </span>primary</span><span class="s4">:</span><span class="s6"> </span><span class="s5">'#B2FF00'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">// Your specific Neon Lime color</span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">    </span>dark</span><span class="s4">:</span><span class="s6"> </span><span class="s5">'#111111'</span><span class="s4">,</span><span class="s6"><span class="Apple-converted-space">    </span></span><span class="s2">// Charcoal/Black foundation</span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">    </span>light</span><span class="s4">:</span><span class="s6"> </span><span class="s5">'#F8F9FA'</span><span class="s4">,</span><span class="s6"> <span class="Apple-converted-space">  </span></span><span class="s2">// Soft background</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>white</span><span class="s4">:</span><span class="s2"> </span><span class="s5">'#FFFFFF'</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span>useEffect</span><span class="s4">(()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">const</span><span class="s2"> handleScroll </span><span class="s4">=</span><span class="s2"> </span><span class="s4">()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>setIsScrolled</span><span class="s4">(</span><span class="s2">window</span><span class="s4">.</span><span class="s2">scrollY </span><span class="s4">&gt;</span><span class="s2"> </span><span class="s8">50</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">};</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>window</span><span class="s4">.</span><span class="s2">addEventListener</span><span class="s4">(</span><span class="s5">'scroll'</span><span class="s4">,</span><span class="s2"> handleScroll</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">return</span><span class="s2"> </span><span class="s4">()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> window</span><span class="s4">.</span><span class="s2">removeEventListener</span><span class="s4">(</span><span class="s5">'scroll'</span><span class="s4">,</span><span class="s2"> handleScroll</span><span class="s4">);</span></p>
-<p class="p6"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">},</span><span class="s6"> </span><span class="s2">[]);</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> annualIncome </span><span class="s4">=</span><span class="s2"> rentValue </span><span class="s4">*</span><span class="s2"> </span><span class="s8">12</span><span class="s4">;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> scrollTo </span><span class="s4">=</span><span class="s2"> </span><span class="s4">(</span><span class="s2">id</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">const</span><span class="s2"> element </span><span class="s4">=</span><span class="s2"> document</span><span class="s4">.</span><span class="s2">getElementById</span><span class="s4">(</span><span class="s2">id</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">if</span><span class="s2"> </span><span class="s4">(</span><span class="s2">element</span><span class="s4">)</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>element</span><span class="s4">.</span><span class="s2">scrollIntoView</span><span class="s4">({</span><span class="s2"> behavior</span><span class="s4">:</span><span class="s2"> </span><span class="s5">'smooth'</span><span class="s2"> </span><span class="s4">});</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>setIsMenuOpen</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> handleCtaClick </span><span class="s4">=</span><span class="s2"> </span><span class="s4">()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>window</span><span class="s4">.</span><span class="s2">open</span><span class="s4">(</span><span class="s2">dmLink</span><span class="s4">,</span><span class="s2"> </span><span class="s5">'_blank'</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> handleInputChange </span><span class="s4">=</span><span class="s2"> </span><span class="s4">(</span><span class="s2">e</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">const</span><span class="s2"> </span><span class="s4">{</span><span class="s2"> name</span><span class="s4">,</span><span class="s2"> value </span><span class="s4">}</span><span class="s2"> </span><span class="s4">=</span><span class="s2"> e</span><span class="s4">.</span><span class="s2">target</span><span class="s4">;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>setFormData</span><span class="s4">(</span><span class="s2">prev </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">({</span><span class="s2"> </span><span class="s4">...</span><span class="s2">prev</span><span class="s4">,</span><span class="s2"> </span><span class="s4">[</span><span class="s2">name</span><span class="s4">]:</span><span class="s2"> value </span><span class="s4">}));</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> handleSubmit </span><span class="s4">=</span><span class="s2"> </span><span class="s1">async</span><span class="s2"> </span><span class="s4">(</span><span class="s2">e</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>e</span><span class="s4">.</span><span class="s2">preventDefault</span><span class="s4">();</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>setIsSubmitting</span><span class="s4">(</span><span class="s1">true</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s1">await</span><span class="s2"> </span><span class="s1">new</span><span class="s2"> </span><span class="s3">Promise</span><span class="s4">(</span><span class="s2">resolve </span><span class="s4">=&gt;</span><span class="s2"> setTimeout</span><span class="s4">(</span><span class="s2">resolve</span><span class="s4">,</span><span class="s2"> </span><span class="s8">2000</span><span class="s4">));</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>setIsSubmitting</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>setIsSubmitted</span><span class="s4">(</span><span class="s1">true</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span>setTimeout</span><span class="s4">(()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>setIsSubmitted</span><span class="s4">(</span><span class="s1">false</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span>setFormData</span><span class="s4">({</span><span class="s2"> name</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span><span class="s2"> email</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span><span class="s2"> address</span><span class="s4">:</span><span class="s2"> </span><span class="s5">''</span><span class="s4">,</span><span class="s2"> goal</span><span class="s4">:</span><span class="s2"> </span><span class="s5">'Rental Income'</span><span class="s2"> </span><span class="s4">});</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">},</span><span class="s2"> </span><span class="s8">5000</span><span class="s4">);</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">const</span><span class="s2"> handleImgError </span><span class="s4">=</span><span class="s2"> </span><span class="s4">(</span><span class="s2">e</span><span class="s4">,</span><span class="s2"> fallbackUrl</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">{</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">    </span>e</span><span class="s4">.</span><span class="s6">target</span><span class="s4">.</span><span class="s6">src </span><span class="s4">=</span><span class="s6"> fallbackUrl </span><span class="s4">||</span><span class="s6"> </span><span class="s2">"https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&amp;fit=crop&amp;q=80&amp;w=1000"</span><span class="s4">;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p2"><span class="s6"><span class="Apple-converted-space">  </span></span><span class="s2">return</span><span class="s6"> </span><span class="s4">(</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">    </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"min-h-screen bg-white text-[#111111] selection:bg-[#B2FF00] selection:text-black font-sans"</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">      </span></span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Navigation */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">nav className</span><span class="s4">={</span><span class="s2">`fixed w-full z-50 transition-all duration-300 </span><span class="s4">${</span><span class="s6">isScrolled </span><span class="s4">?</span><span class="s6"> </span><span class="s2">'bg-white/95 backdrop-blur-md py-4 shadow-md'</span><span class="s6"> </span><span class="s4">:</span><span class="s6"> </span><span class="s2">'bg-transparent py-8'</span><span class="s4">}</span><span class="s2">`</span><span class="s4">}&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6 flex justify-between items-center"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex items-center gap-3 group cursor-pointer"</span><span class="s6"> onClick</span><span class="s4">={()</span><span class="s6"> </span><span class="s4">=&gt;</span><span class="s6"> scrollTo</span><span class="s4">(</span><span class="s2">'hero'</span><span class="s4">)}&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"w-10 h-10 bg-[#B2FF00] flex items-center justify-center rounded-sm transition-all group-hover:shadow-[0_0_20px_rgba(178,255,0,0.4)]"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s3">Home</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"text-black w-6 h-6"</span><span class="s2"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">span className</span><span class="s4">=</span><span class="s2">"text-2xl font-black tracking-[0.15em] uppercase font-sans"</span><span class="s4">&gt;</span><span class="s3">CASA</span><span class="s4">&lt;/</span><span class="s6">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">{</span><span class="s2">/* Desktop Nav */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"hidden md:flex items-center gap-12"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">{[</span><span class="s2">'Process'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'Units'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'ROI'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'Contact'</span><span class="s4">].</span><span class="s6">map</span><span class="s4">((</span><span class="s6">item</span><span class="s4">)</span><span class="s6"> </span><span class="s4">=&gt;</span><span class="s6"> </span><span class="s4">(</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">button<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>key</span><span class="s4">={</span><span class="s2">item</span><span class="s4">}</span><span class="s2"><span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>onClick</span><span class="s4">={()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> scrollTo</span><span class="s4">(</span><span class="s2">item</span><span class="s4">.</span><span class="s2">toLowerCase</span><span class="s4">())}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span>className</span><span class="s4">=</span><span class="s2">"text-xs font-bold uppercase tracking-widest hover:text-[#B2FF00] transition-colors"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">{</span><span class="s2">item</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s2">button<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>onClick</span><span class="s4">={</span><span class="s2">handleCtaClick</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span>className</span><span class="s4">=</span><span class="s2">"bg-[#111111] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-none hover:bg-[#B2FF00] hover:text-black transition-all"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s3">Get</span><span class="s2"> </span><span class="s3">Assessment</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">button className</span><span class="s4">=</span><span class="s5">"md:hidden"</span><span class="s2"> onClick</span><span class="s4">={()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> setIsMenuOpen</span><span class="s4">(!</span><span class="s2">isMenuOpen</span><span class="s4">)}&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">{</span><span class="s2">isMenuOpen </span><span class="s4">?</span><span class="s2"> </span><span class="s4">&lt;</span><span class="s3">X</span><span class="s2"> /&gt; </span><span class="s4">:</span><span class="s2"> </span><span class="s4">&lt;</span><span class="s3">Menu</span><span class="s2"> /&gt;</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">{</span><span class="s2">/* Mobile Menu */</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">{</span><span class="s2">isMenuOpen </span><span class="s4">&amp;&amp;</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"absolute top-full left-0 w-full bg-white border-t border-gray-100 flex flex-col p-8 gap-6 md:hidden shadow-2xl"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">{[</span><span class="s2">'Process'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'Units'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'ROI'</span><span class="s4">,</span><span class="s6"> </span><span class="s2">'Contact'</span><span class="s4">].</span><span class="s6">map</span><span class="s4">((</span><span class="s6">item</span><span class="s4">)</span><span class="s6"> </span><span class="s4">=&gt;</span><span class="s6"> </span><span class="s4">(</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">button key</span><span class="s4">={</span><span class="s2">item</span><span class="s4">}</span><span class="s2"> onClick</span><span class="s4">={()</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> scrollTo</span><span class="s4">(</span><span class="s2">item</span><span class="s4">.</span><span class="s2">toLowerCase</span><span class="s4">())}</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"text-left text-xl font-bold uppercase tracking-widest"</span><span class="s4">&gt;{</span><span class="s2">item</span><span class="s4">}&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">)}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">nav</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Hero Section */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">section id</span><span class="s4">=</span><span class="s2">"hero"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden bg-[#F8F9FA]"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"z-10"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"w-20 h-1 bg-[#B2FF00] mb-8"</span><span class="s2">&gt;&lt;/div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">h1 className</span><span class="s4">=</span><span class="s2">"text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-8"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s3">Backyard</span><span class="s2"> </span><span class="s4">&lt;</span><span class="s2">br /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">span className</span><span class="s4">=</span><span class="s5">"bg-[#B2FF00] px-2"</span><span class="s4">&gt;</span><span class="s3">Intelligent</span><span class="s4">&lt;/</span><span class="s2">span</span><span class="s4">&gt;</span><span class="s2"> </span><span class="s4">&lt;</span><span class="s2">br /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s3">Living</span><span class="s4">.</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">h1</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-xl text-gray-500 mb-12 max-w-lg leading-relaxed font-light"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s3">Premium</span><span class="s6"> </span><span class="s3">ADU</span><span class="s6"> architecture designed </span><span class="s1">for</span><span class="s6"> </span><span class="s3">Charlotte</span><span class="s2">'s new urban landscape. High-yield, turnkey backyard developments.</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">p</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex flex-col sm:flex-row gap-6"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s6">button onClick</span><span class="s4">={</span><span class="s6">handleCtaClick</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"bg-[#B2FF00] text-black px-10 py-5 font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#111111] hover:text-white transition-all shadow-xl shadow-lime-500/20"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s3">Start</span><span class="s2"> </span><span class="s3">Assessment</span><span class="s2"> </span><span class="s4">&lt;</span><span class="s3">ArrowRight</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"w-5 h-5"</span><span class="s2"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s6">button onClick</span><span class="s4">={()</span><span class="s6"> </span><span class="s4">=&gt;</span><span class="s6"> scrollTo</span><span class="s4">(</span><span class="s2">'units'</span><span class="s4">)}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"bg-white border-2 border-[#111111] text-[#111111] px-10 py-5 font-bold uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-all"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s3">View</span><span class="s2"> </span><span class="s3">Specs</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"relative group"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"aspect-[4/5] rounded-none overflow-hidden shadow-[40px_40px_0px_rgba(178,255,0,0.15)] bg-gray-200"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">img<span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span>src</span><span class="s4">=</span><span class="s2">"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;q=80&amp;w=1000"</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span>alt</span><span class="s4">=</span><span class="s2">"Modern Architecture"</span><span class="s6"><span class="Apple-converted-space"> </span></span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span>className</span><span class="s4">=</span><span class="s2">"w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>onError</span><span class="s4">={(</span><span class="s2">e</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> handleImgError</span><span class="s4">(</span><span class="s2">e</span><span class="s4">)}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span>/&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">{</span><span class="s2">/* Dynamic Badge */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"absolute -bottom-10 -right-6 bg-[#111111] text-white p-8 shadow-2xl hidden md:block border-l-4 border-[#B2FF00]"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"flex flex-col gap-1"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">span className</span><span class="s4">=</span><span class="s5">"text-[#B2FF00] font-black text-4xl"</span><span class="s4">&gt;</span><span class="s8">35</span><span class="s2">%&lt;/span</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">span className</span><span class="s4">=</span><span class="s2">"text-[10px] uppercase tracking-[3px] font-bold text-gray-400"</span><span class="s4">&gt;</span><span class="s3">Equity</span><span class="s6"> </span><span class="s3">Increase</span><span class="s4">&lt;/</span><span class="s6">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">section</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Modern Value Prop */</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s2">section className</span><span class="s4">=</span><span class="s5">"py-32 bg-white"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"grid md:grid-cols-3 gap-20"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">{[</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> label</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Maximize"</span><span class="s4">,</span><span class="s6"> title</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Rental Yield"</span><span class="s4">,</span><span class="s6"> desc</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Our units are optimized for high-end short-term and long-term rental performance."</span><span class="s4">,</span><span class="s6"> icon</span><span class="s4">:</span><span class="s6"> </span><span class="s4">&lt;</span><span class="s3">TrendingUp</span><span class="s6"> /&gt; </span><span class="s4">},</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> label</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Design"</span><span class="s4">,</span><span class="s6"> title</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Modernist ADU"</span><span class="s4">,</span><span class="s6"> desc</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Clean lines, floor-to-ceiling glass, and premium sustainable materials come standard."</span><span class="s4">,</span><span class="s6"> icon</span><span class="s4">:</span><span class="s6"> </span><span class="s4">&lt;</span><span class="s3">Home</span><span class="s6"> /&gt; </span><span class="s4">},</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> label</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Manage"</span><span class="s4">,</span><span class="s6"> title</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Total Turnkey"</span><span class="s4">,</span><span class="s6"> desc</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"We handle the entire Charlotte UDO permitting process from start to finish."</span><span class="s4">,</span><span class="s6"> icon</span><span class="s4">:</span><span class="s6"> </span><span class="s4">&lt;</span><span class="s3">ShieldCheck</span><span class="s6"> /&gt; </span><span class="s4">},</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">].</span><span class="s2">map</span><span class="s4">((</span><span class="s2">prop</span><span class="s4">,</span><span class="s2"> i</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">div key</span><span class="s4">={</span><span class="s2">i</span><span class="s4">}</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"group cursor-default"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"text-[#B2FF00] mb-6 bg-black w-12 h-12 flex items-center justify-center rounded-sm group-hover:scale-110 transition-transform"</span><span class="s4">&gt;{</span><span class="s6">prop</span><span class="s4">.</span><span class="s6">icon</span><span class="s4">}&lt;/</span><span class="s6">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">span className</span><span class="s4">=</span><span class="s2">"text-[10px] font-black uppercase tracking-[4px] text-gray-400 block mb-2"</span><span class="s4">&gt;{</span><span class="s6">prop</span><span class="s4">.</span><span class="s6">label</span><span class="s4">}&lt;/</span><span class="s6">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">h3 className</span><span class="s4">=</span><span class="s5">"text-3xl font-black uppercase mb-4"</span><span class="s4">&gt;{</span><span class="s2">prop</span><span class="s4">.</span><span class="s2">title</span><span class="s4">}&lt;/</span><span class="s2">h3</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-gray-500 leading-relaxed font-light"</span><span class="s4">&gt;{</span><span class="s6">prop</span><span class="s4">.</span><span class="s6">desc</span><span class="s4">}&lt;/</span><span class="s6">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">section</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Signature Models Grid */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">section id</span><span class="s4">=</span><span class="s2">"units"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"py-32 bg-[#F8F9FA]"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"mb-20"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">span className</span><span class="s4">=</span><span class="s2">"text-black bg-[#B2FF00] font-black tracking-widest uppercase text-xs px-2 py-1"</span><span class="s4">&gt;</span><span class="s3">The</span><span class="s6"> </span><span class="s3">Collection</span><span class="s4">&lt;/</span><span class="s6">span</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">h2 className</span><span class="s4">=</span><span class="s2">"text-5xl font-black uppercase mt-4"</span><span class="s4">&gt;</span><span class="s3">Standard</span><span class="s6"> </span><span class="s3">Builds</span><span class="s4">&lt;/</span><span class="s6">h2</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"grid md:grid-cols-2 lg:grid-cols-3 gap-12"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">{[</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> name</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Unit 01"</span><span class="s4">,</span><span class="s6"> </span><span class="s1">type</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"STUDIO"</span><span class="s4">,</span><span class="s6"> img</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;q=80&amp;w=800"</span><span class="s6"> </span><span class="s4">},</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> name</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Unit 02"</span><span class="s4">,</span><span class="s6"> </span><span class="s1">type</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"1-BEDROOM"</span><span class="s4">,</span><span class="s6"> img</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&amp;fit=crop&amp;q=80&amp;w=800"</span><span class="s6"> </span><span class="s4">},</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">{</span><span class="s6"> name</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"Unit 03"</span><span class="s4">,</span><span class="s6"> </span><span class="s1">type</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"CUSTOM ESTATE"</span><span class="s4">,</span><span class="s6"> img</span><span class="s4">:</span><span class="s6"> </span><span class="s2">"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;q=80&amp;w=800"</span><span class="s6"> </span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">].</span><span class="s2">map</span><span class="s4">((</span><span class="s2">unit</span><span class="s4">,</span><span class="s2"> i</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">div key</span><span class="s4">={</span><span class="s2">i</span><span class="s4">}</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"group"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"relative aspect-square overflow-hidden mb-6 bg-gray-200"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">img src</span><span class="s4">={</span><span class="s6">unit</span><span class="s4">.</span><span class="s6">img</span><span class="s4">}</span><span class="s6"> alt</span><span class="s4">={</span><span class="s6">unit</span><span class="s4">.</span><span class="s6">name</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"</span><span class="s6"> /&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"absolute inset-0 bg-[#111111]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">button onClick</span><span class="s4">={</span><span class="s6">handleCtaClick</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"bg-[#B2FF00] text-black px-8 py-3 font-black text-xs uppercase tracking-widest shadow-xl"</span><span class="s4">&gt;</span><span class="s3">Get</span><span class="s6"> </span><span class="s3">Quote</span><span class="s4">&lt;/</span><span class="s6">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex justify-between items-end border-b-2 border-gray-100 pb-4 group-hover:border-[#B2FF00] transition-colors"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s2">h4 className</span><span class="s4">=</span><span class="s5">"text-2xl font-black uppercase"</span><span class="s4">&gt;{</span><span class="s2">unit</span><span class="s4">.</span><span class="s2">name</span><span class="s4">}&lt;/</span><span class="s2">h4</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1 group-hover:text-black transition-colors"</span><span class="s4">&gt;{</span><span class="s6">unit</span><span class="s4">.</span><span class="s1">type</span><span class="s4">}&lt;/</span><span class="s6">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s3">ChevronRight</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"text-gray-300 group-hover:text-[#B2FF00] transition-colors"</span><span class="s6"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">section</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* ROI Impact */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">section id</span><span class="s4">=</span><span class="s2">"roi"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"py-32 bg-[#111111] text-white"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-20 items-center"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"flex-1"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">h2 className</span><span class="s4">=</span><span class="s2">"text-5xl font-black uppercase mb-8 leading-tight"</span><span class="s4">&gt;</span><span class="s3">Investment</span><span class="s6"> </span><span class="s4">&lt;</span><span class="s6">br /&gt;&lt;span className</span><span class="s4">=</span><span class="s2">"text-[#B2FF00]"</span><span class="s4">&gt;</span><span class="s3">Forecasting</span><span class="s4">&lt;/</span><span class="s6">span&gt;&lt;/h2</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-gray-400 text-lg mb-12 font-light"</span><span class="s4">&gt;</span><span class="s3">Charlotte</span><span class="s2">'s real estate market is accelerating. A backyard unit isn'</span><span class="s6">t just space</span><span class="s9">—</span><span class="s6">it</span><span class="s2">'s a financial asset.&lt;/p&gt;</span></p>
-<p class="p5"><span class="s2"><span class="Apple-converted-space">            </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-10"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-4"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex justify-between text-xs font-bold uppercase tracking-widest"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">span</span><span class="s4">&gt;</span><span class="s3">Anticipated</span><span class="s2"> </span><span class="s3">Rent</span><span class="s4">&lt;/</span><span class="s2">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">span className</span><span class="s4">=</span><span class="s5">"text-[#B2FF00] font-black"</span><span class="s4">&gt;</span><span class="s2">$</span><span class="s4">{</span><span class="s2">rentValue</span><span class="s4">}/</span><span class="s2">mo</span><span class="s4">&lt;/</span><span class="s2">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">input<span class="Apple-converted-space"> </span></span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s1">type</span><span class="s4">=</span><span class="s5">"range"</span><span class="s2"> min</span><span class="s4">=</span><span class="s5">"1200"</span><span class="s2"> max</span><span class="s4">=</span><span class="s5">"4500"</span><span class="s2"> step</span><span class="s4">=</span><span class="s5">"100"</span><span class="s2"> value</span><span class="s4">={</span><span class="s2">rentValue</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span>onChange</span><span class="s4">={(</span><span class="s2">e</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> setRentValue</span><span class="s4">(</span><span class="s2">parseInt</span><span class="s4">(</span><span class="s2">e</span><span class="s4">.</span><span class="s2">target</span><span class="s4">.</span><span class="s2">value</span><span class="s4">))}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span>className</span><span class="s4">=</span><span class="s2">"w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#B2FF00]"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span>/&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"grid grid-cols-2 gap-10 border-t border-gray-800 pt-10"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-[10px] uppercase tracking-widest text-gray-500 mb-2 font-bold"</span><span class="s4">&gt;</span><span class="s3">Annual</span><span class="s6"> </span><span class="s3">Revenue</span><span class="s4">&lt;/</span><span class="s6">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">p className</span><span class="s4">=</span><span class="s5">"text-4xl font-black"</span><span class="s4">&gt;</span><span class="s2">$</span><span class="s4">{</span><span class="s2">annualIncome</span><span class="s4">.</span><span class="s2">toLocaleString</span><span class="s4">()}&lt;/</span><span class="s2">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-[10px] uppercase tracking-widest text-gray-500 mb-2 font-bold"</span><span class="s4">&gt;</span><span class="s3">Appreciation</span><span class="s4">&lt;/</span><span class="s6">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">p className</span><span class="s4">=</span><span class="s5">"text-4xl font-black text-[#B2FF00]"</span><span class="s2">&gt;+$150k+&lt;/p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"flex-1 w-full"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">             </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"bg-white text-[#111111] p-12 relative shadow-[20px_20px_0px_rgba(178,255,0,1)]"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"absolute top-0 right-0 w-24 h-24 bg-[#B2FF00] flex items-center justify-center"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s3">TrendingUp</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"text-black w-10 h-10"</span><span class="s2"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">h3 className</span><span class="s4">=</span><span class="s2">"text-3xl font-black uppercase mb-6"</span><span class="s4">&gt;</span><span class="s3">Market</span><span class="s6"> </span><span class="s3">Report</span><span class="s4">&lt;/</span><span class="s6">h3</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">ul className</span><span class="s4">=</span><span class="s5">"space-y-6"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span></span><span class="s4">{[</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                     </span></span><span class="s2">"Charlotte UDO Compliant"</span><span class="s4">,</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                     </span></span><span class="s2">"Short-term Rental Ready"</span><span class="s4">,</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                     </span></span><span class="s2">"Energy Star Certified"</span><span class="s4">,</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                     </span></span><span class="s2">"High-Quality Modular Tech"</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span></span><span class="s4">].</span><span class="s2">map</span><span class="s4">((</span><span class="s2">item</span><span class="s4">,</span><span class="s2"> i</span><span class="s4">)</span><span class="s2"> </span><span class="s4">=&gt;</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                     </span></span><span class="s4">&lt;</span><span class="s6">li key</span><span class="s4">={</span><span class="s6">i</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"flex items-center gap-4 text-sm font-bold uppercase tracking-tighter"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                       </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"w-2 h-2 bg-[#B2FF00]"</span><span class="s2">&gt;&lt;/div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                       </span></span><span class="s4">{</span><span class="s2">item</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                     </span></span><span class="s4">&lt;/</span><span class="s2">li</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                   </span></span><span class="s4">))}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">ul</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">button onClick</span><span class="s4">={</span><span class="s6">handleCtaClick</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full mt-12 bg-[#111111] text-white py-5 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s3">Get</span><span class="s2"> </span><span class="s3">Full</span><span class="s2"> </span><span class="s3">Strategy</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">             </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">section</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Assessment Form */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">section id</span><span class="s4">=</span><span class="s2">"contact"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"py-32 bg-[#F8F9FA]"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-4xl mx-auto px-6"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"text-center mb-16"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">h2 className</span><span class="s4">=</span><span class="s2">"text-5xl font-black uppercase mb-4"</span><span class="s4">&gt;</span><span class="s3">Site</span><span class="s6"> </span><span class="s3">Assessment</span><span class="s4">&lt;/</span><span class="s6">h2</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-gray-500 font-light"</span><span class="s4">&gt;</span><span class="s3">Let</span><span class="s6"> our analysts check your lot</span><span class="s2">'s feasibility for free.&lt;/p&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"bg-white shadow-2xl p-10 lg:p-16 border-t-8 border-[#B2FF00]"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">{</span><span class="s2">isSubmitted </span><span class="s4">?</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"text-center py-20 space-y-6"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"w-24 h-24 bg-lime-50 text-black rounded-full flex items-center justify-center mx-auto border-2 border-[#B2FF00]"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s3">MailCheck</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"w-12 h-12"</span><span class="s2"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">h3 className</span><span class="s4">=</span><span class="s5">"text-4xl font-black uppercase"</span><span class="s4">&gt;</span><span class="s3">Request</span><span class="s2"> </span><span class="s3">Received</span><span class="s4">&lt;/</span><span class="s2">h3</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">p className</span><span class="s4">=</span><span class="s5">"text-gray-500 max-w-sm mx-auto"</span><span class="s4">&gt;</span><span class="s3">Our</span><span class="s2"> team </span><span class="s1">is</span><span class="s2"> reviewing </span><span class="s4">{</span><span class="s2">formData</span><span class="s4">.</span><span class="s2">address</span><span class="s4">}.</span><span class="s2"> </span><span class="s3">We</span><span class="s2"> will contact you at </span><span class="s4">{</span><span class="s2">formData</span><span class="s4">.</span><span class="s2">email</span><span class="s4">}</span><span class="s2"> within </span><span class="s8">24</span><span class="s2"> hours</span><span class="s4">.&lt;/</span><span class="s2">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">)</span><span class="s2"> </span><span class="s4">:</span><span class="s2"> </span><span class="s4">(</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">form onSubmit</span><span class="s4">={</span><span class="s2">handleSubmit</span><span class="s4">}</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"space-y-8"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"grid md:grid-cols-2 gap-8"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-3"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">label className</span><span class="s4">=</span><span class="s2">"text-[10px] font-black uppercase tracking-widest text-gray-400"</span><span class="s4">&gt;</span><span class="s3">Owner</span><span class="s6"> </span><span class="s3">Name</span><span class="s4">&lt;/</span><span class="s6">label</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">input required name</span><span class="s4">=</span><span class="s2">"name"</span><span class="s6"> value</span><span class="s4">={</span><span class="s6">formData</span><span class="s4">.</span><span class="s6">name</span><span class="s4">}</span><span class="s6"> onChange</span><span class="s4">={</span><span class="s6">handleInputChange</span><span class="s4">}</span><span class="s6"> </span><span class="s1">type</span><span class="s4">=</span><span class="s2">"text"</span><span class="s6"> placeholder</span><span class="s4">=</span><span class="s2">"FULL NAME"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all"</span><span class="s6"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-3"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">label className</span><span class="s4">=</span><span class="s2">"text-[10px] font-black uppercase tracking-widest text-gray-400"</span><span class="s4">&gt;</span><span class="s3">Email</span><span class="s6"> </span><span class="s3">Contact</span><span class="s4">&lt;/</span><span class="s6">label</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s6">input required name</span><span class="s4">=</span><span class="s2">"email"</span><span class="s6"> value</span><span class="s4">={</span><span class="s6">formData</span><span class="s4">.</span><span class="s6">email</span><span class="s4">}</span><span class="s6"> onChange</span><span class="s4">={</span><span class="s6">handleInputChange</span><span class="s4">}</span><span class="s6"> </span><span class="s1">type</span><span class="s4">=</span><span class="s2">"email"</span><span class="s6"> placeholder</span><span class="s4">=</span><span class="s2">"EMAIL ADDRESS"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all"</span><span class="s6"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-3"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">label className</span><span class="s4">=</span><span class="s2">"text-[10px] font-black uppercase tracking-widest text-gray-400"</span><span class="s4">&gt;</span><span class="s3">Property</span><span class="s6"> </span><span class="s3">Location</span><span class="s4">&lt;/</span><span class="s6">label</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">input required name</span><span class="s4">=</span><span class="s2">"address"</span><span class="s6"> value</span><span class="s4">={</span><span class="s6">formData</span><span class="s4">.</span><span class="s6">address</span><span class="s4">}</span><span class="s6"> onChange</span><span class="s4">={</span><span class="s6">handleInputChange</span><span class="s4">}</span><span class="s6"> </span><span class="s1">type</span><span class="s4">=</span><span class="s2">"text"</span><span class="s6"> placeholder</span><span class="s4">=</span><span class="s2">"123 STREET, CHARLOTTE, NC"</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all"</span><span class="s6"> /&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"space-y-3"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">label className</span><span class="s4">=</span><span class="s2">"text-[10px] font-black uppercase tracking-widest text-gray-400"</span><span class="s4">&gt;</span><span class="s3">Investment</span><span class="s6"> </span><span class="s3">Goal</span><span class="s4">&lt;/</span><span class="s6">label</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;</span><span class="s6">select name</span><span class="s4">=</span><span class="s2">"goal"</span><span class="s6"> value</span><span class="s4">={</span><span class="s6">formData</span><span class="s4">.</span><span class="s6">goal</span><span class="s4">}</span><span class="s6"> onChange</span><span class="s4">={</span><span class="s6">handleInputChange</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold text-gray-400 cursor-pointer"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s2">option</span><span class="s4">&gt;</span><span class="s3">CASH</span><span class="s2"> </span><span class="s3">FLOW</span><span class="s2"> </span><span class="s4">/</span><span class="s2"> </span><span class="s3">RENTAL</span><span class="s4">&lt;/</span><span class="s2">option</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s2">option</span><span class="s4">&gt;</span><span class="s3">FAMILY</span><span class="s2"> </span><span class="s4">/</span><span class="s2"> </span><span class="s3">MULTI</span><span class="s4">-</span><span class="s3">GEN</span><span class="s4">&lt;/</span><span class="s2">option</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                    </span></span><span class="s4">&lt;</span><span class="s2">option</span><span class="s4">&gt;</span><span class="s3">CREATIVE</span><span class="s2"> </span><span class="s3">STUDIO</span><span class="s4">&lt;/</span><span class="s2">option</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">&lt;/</span><span class="s2">select</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;</span><span class="s6">button disabled</span><span class="s4">={</span><span class="s6">isSubmitting</span><span class="s4">}</span><span class="s6"> className</span><span class="s4">=</span><span class="s2">"w-full bg-[#111111] text-white py-6 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all flex items-center justify-center gap-4 disabled:opacity-50"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                  </span></span><span class="s4">{</span><span class="s2">isSubmitting </span><span class="s4">?</span><span class="s2"> &lt;&gt;&lt;</span><span class="s3">Loader2</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"animate-spin"</span><span class="s2"> /&gt; </span><span class="s3">Verifying</span><span class="s2"> </span><span class="s3">Site</span><span class="s4">...</span><span class="s2">&lt;/&gt; </span><span class="s4">:</span><span class="s2"> </span><span class="s5">'Send Assessment Request'</span><span class="s4">}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">                </span></span><span class="s4">&lt;/</span><span class="s2">button</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;/</span><span class="s2">form</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">)}</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">section</span><span class="s4">&gt;</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p7"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">{</span><span class="s2">/* Brand Footer */</span><span class="s4">}</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;</span><span class="s6">footer className</span><span class="s4">=</span><span class="s2">"py-20 bg-[#111111] text-white border-t border-gray-900"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"max-w-7xl mx-auto px-6"</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex flex-col md:flex-row justify-between items-center gap-12"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"flex items-center gap-3"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">div className</span><span class="s4">=</span><span class="s5">"w-8 h-8 bg-[#B2FF00] rounded-sm"</span><span class="s2">&gt;&lt;/div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s6">span className</span><span class="s4">=</span><span class="s2">"text-3xl font-black tracking-[0.2em] uppercase"</span><span class="s4">&gt;</span><span class="s3">CASA</span><span class="s4">&lt;/</span><span class="s6">span</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">div className</span><span class="s4">=</span><span class="s2">"flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500"</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">a href</span><span class="s4">={</span><span class="s2">instagramProfile</span><span class="s4">}</span><span class="s2"> target</span><span class="s4">=</span><span class="s5">"_blank"</span><span class="s2"> rel</span><span class="s4">=</span><span class="s5">"noreferrer"</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"hover:text-[#B2FF00]"</span><span class="s4">&gt;</span><span class="s3">Instagram</span><span class="s4">&lt;/</span><span class="s2">a</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">a href</span><span class="s4">=</span><span class="s5">"#"</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"hover:text-[#B2FF00]"</span><span class="s4">&gt;</span><span class="s3">LinkedIn</span><span class="s4">&lt;/</span><span class="s2">a</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">              </span></span><span class="s4">&lt;</span><span class="s2">a href</span><span class="s4">=</span><span class="s5">"#"</span><span class="s2"> className</span><span class="s4">=</span><span class="s5">"hover:text-[#B2FF00]"</span><span class="s4">&gt;</span><span class="s3">Pinterest</span><span class="s4">&lt;/</span><span class="s2">a</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p4"><span class="s6"><span class="Apple-converted-space">            </span></span><span class="s4">&lt;</span><span class="s6">p className</span><span class="s4">=</span><span class="s2">"text-[10px] uppercase tracking-widest text-gray-600"</span><span class="s4">&gt;</span><span class="s9">©</span><span class="s6"> </span><span class="s8">2024</span><span class="s6"> </span><span class="s3">CASA</span><span class="s6"> </span><span class="s3">ADU</span><span class="s6"> </span><span class="s3">DEVELOPMENTS</span><span class="s4">&lt;/</span><span class="s6">p</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">          </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">        </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">      </span></span><span class="s4">&lt;/</span><span class="s2">footer</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">    </span></span><span class="s4">&lt;/</span><span class="s2">div</span><span class="s4">&gt;</span></p>
-<p class="p1"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s4">);</span></p>
-<p class="p6"><span class="s2">};</span></p>
-<p class="p5"><span class="s7"></span><br></p>
-<p class="p2"><span class="s2">export</span><span class="s6"> </span><span class="s2">default</span><span class="s6"> </span><span class="s3">App</span><span class="s4">;</span></p>
-</body>
-</html>
+import React, { useState, useEffect } from 'react';
+import { 
+  Home, 
+  TrendingUp, 
+  Users, 
+  CheckCircle2, 
+  MapPin, 
+  ArrowRight, 
+  Menu, 
+  X, 
+  ChevronRight,
+  ShieldCheck,
+  Hammer,
+  FileText,
+  Loader2,
+  MailCheck
+} from 'lucide-react';
+
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [rentValue, setRentValue] = useState(1800);
+  
+  // Links
+  const dmLink = "https://www.instagram.com/direct/t/17842404066666262/";
+  const instagramProfile = "https://www.instagram.com/casaadu";
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    address: '',
+    goal: 'Rental Income'
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Brand Colors Updated to Neon Lime
+  const colors = {
+    primary: '#B2FF00', // Your specific Neon Lime color
+    dark: '#111111',    // Charcoal/Black foundation
+    light: '#F8F9FA',   // Soft background
+    white: '#FFFFFF'
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const annualIncome = rentValue * 12;
+
+  const scrollTo = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
+
+  const handleCtaClick = () => {
+    window.open(dmLink, '_blank');
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({ name: '', email: '', address: '', goal: 'Rental Income' });
+    }, 5000);
+  };
+
+  const handleImgError = (e, fallbackUrl) => {
+    e.target.src = fallbackUrl || "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=1000";
+  };
+
+  return (
+    <div className="min-h-screen bg-white text-[#111111] selection:bg-[#B2FF00] selection:text-black font-sans">
+      
+      {/* Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md py-4 shadow-md' : 'bg-transparent py-8'}`}>
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => scrollTo('hero')}>
+            <div className="w-10 h-10 bg-[#B2FF00] flex items-center justify-center rounded-sm transition-all group-hover:shadow-[0_0_20px_rgba(178,255,0,0.4)]">
+              <Home className="text-black w-6 h-6" />
+            </div>
+            <span className="text-2xl font-black tracking-[0.15em] uppercase font-sans">CASA</span>
+          </div>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-12">
+            {['Process', 'Units', 'ROI', 'Contact'].map((item) => (
+              <button 
+                key={item} 
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="text-xs font-bold uppercase tracking-widest hover:text-[#B2FF00] transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+            <button 
+              onClick={handleCtaClick}
+              className="bg-[#111111] text-white px-8 py-3 text-xs font-bold uppercase tracking-widest rounded-none hover:bg-[#B2FF00] hover:text-black transition-all"
+            >
+              Get Assessment
+            </button>
+          </div>
+
+          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="absolute top-full left-0 w-full bg-white border-t border-gray-100 flex flex-col p-8 gap-6 md:hidden shadow-2xl">
+            {['Process', 'Units', 'ROI', 'Contact'].map((item) => (
+              <button key={item} onClick={() => scrollTo(item.toLowerCase())} className="text-left text-xl font-bold uppercase tracking-widest">{item}</button>
+            ))}
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section id="hero" className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+          <div className="z-10">
+            <div className="w-20 h-1 bg-[#B2FF00] mb-8"></div>
+            <h1 className="text-6xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
+              Backyard <br />
+              <span className="bg-[#B2FF00] px-2">Intelligent</span> <br />
+              Living.
+            </h1>
+            <p className="text-xl text-gray-500 mb-12 max-w-lg leading-relaxed font-light">
+              Premium ADU architecture designed for Charlotte's new urban landscape. High-yield, turnkey backyard developments.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <button onClick={handleCtaClick} className="bg-[#B2FF00] text-black px-10 py-5 font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#111111] hover:text-white transition-all shadow-xl shadow-lime-500/20">
+                Start Assessment <ArrowRight className="w-5 h-5" />
+              </button>
+              <button onClick={() => scrollTo('units')} className="bg-white border-2 border-[#111111] text-[#111111] px-10 py-5 font-bold uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-all">
+                View Specs
+              </button>
+            </div>
+          </div>
+          <div className="relative group">
+            <div className="aspect-[4/5] rounded-none overflow-hidden shadow-[40px_40px_0px_rgba(178,255,0,0.15)] bg-gray-200">
+              <img 
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1000" 
+                alt="Modern Architecture" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                onError={(e) => handleImgError(e)}
+              />
+            </div>
+            {/* Dynamic Badge */}
+            <div className="absolute -bottom-10 -right-6 bg-[#111111] text-white p-8 shadow-2xl hidden md:block border-l-4 border-[#B2FF00]">
+              <div className="flex flex-col gap-1">
+                <span className="text-[#B2FF00] font-black text-4xl">35%</span>
+                <span className="text-[10px] uppercase tracking-[3px] font-bold text-gray-400">Equity Increase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modern Value Prop */}
+      <section className="py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-20">
+            {[
+              { label: "Maximize", title: "Rental Yield", desc: "Our units are optimized for high-end short-term and long-term rental performance.", icon: <TrendingUp /> },
+              { label: "Design", title: "Modernist ADU", desc: "Clean lines, floor-to-ceiling glass, and premium sustainable materials come standard.", icon: <Home /> },
+              { label: "Manage", title: "Total Turnkey", desc: "We handle the entire Charlotte UDO permitting process from start to finish.", icon: <ShieldCheck /> },
+            ].map((prop, i) => (
+              <div key={i} className="group cursor-default">
+                <div className="text-[#B2FF00] mb-6 bg-black w-12 h-12 flex items-center justify-center rounded-sm group-hover:scale-110 transition-transform">{prop.icon}</div>
+                <span className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 block mb-2">{prop.label}</span>
+                <h3 className="text-3xl font-black uppercase mb-4">{prop.title}</h3>
+                <p className="text-gray-500 leading-relaxed font-light">{prop.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Signature Models Grid */}
+      <section id="units" className="py-32 bg-[#F8F9FA]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="mb-20">
+            <span className="text-black bg-[#B2FF00] font-black tracking-widest uppercase text-xs px-2 py-1">The Collection</span>
+            <h2 className="text-5xl font-black uppercase mt-4">Standard Builds</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            {[
+              { name: "Unit 01", type: "STUDIO", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=800" },
+              { name: "Unit 02", type: "1-BEDROOM", img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&q=80&w=800" },
+              { name: "Unit 03", type: "CUSTOM ESTATE", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800" }
+            ].map((unit, i) => (
+              <div key={i} className="group">
+                <div className="relative aspect-square overflow-hidden mb-6 bg-gray-200">
+                  <img src={unit.img} alt={unit.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-[#111111]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <button onClick={handleCtaClick} className="bg-[#B2FF00] text-black px-8 py-3 font-black text-xs uppercase tracking-widest shadow-xl">Get Quote</button>
+                  </div>
+                </div>
+                <div className="flex justify-between items-end border-b-2 border-gray-100 pb-4 group-hover:border-[#B2FF00] transition-colors">
+                  <div>
+                    <h4 className="text-2xl font-black uppercase">{unit.name}</h4>
+                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1 group-hover:text-black transition-colors">{unit.type}</p>
+                  </div>
+                  <ChevronRight className="text-gray-300 group-hover:text-[#B2FF00] transition-colors" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Impact */}
+      <section id="roi" className="py-32 bg-[#111111] text-white">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-20 items-center">
+          <div className="flex-1">
+            <h2 className="text-5xl font-black uppercase mb-8 leading-tight">Investment <br /><span className="text-[#B2FF00]">Forecasting</span></h2>
+            <p className="text-gray-400 text-lg mb-12 font-light">Charlotte's real estate market is accelerating. A backyard unit isn't just space—it's a financial asset.</p>
+            
+            <div className="space-y-10">
+              <div className="space-y-4">
+                <div className="flex justify-between text-xs font-bold uppercase tracking-widest">
+                  <span>Anticipated Rent</span>
+                  <span className="text-[#B2FF00] font-black">${rentValue}/mo</span>
+                </div>
+                <input 
+                  type="range" min="1200" max="4500" step="100" value={rentValue}
+                  onChange={(e) => setRentValue(parseInt(e.target.value))}
+                  className="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#B2FF00]"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-10 border-t border-gray-800 pt-10">
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 font-bold">Annual Revenue</p>
+                  <p className="text-4xl font-black">${annualIncome.toLocaleString()}</p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 font-bold">Appreciation</p>
+                  <p className="text-4xl font-black text-[#B2FF00]">+$150k+</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 w-full">
+             <div className="bg-white text-[#111111] p-12 relative shadow-[20px_20px_0px_rgba(178,255,0,1)]">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-[#B2FF00] flex items-center justify-center">
+                  <TrendingUp className="text-black w-10 h-10" />
+                </div>
+                <h3 className="text-3xl font-black uppercase mb-6">Market Report</h3>
+                <ul className="space-y-6">
+                   {[
+                     "Charlotte UDO Compliant",
+                     "Short-term Rental Ready",
+                     "Energy Star Certified",
+                     "High-Quality Modular Tech"
+                   ].map((item, i) => (
+                     <li key={i} className="flex items-center gap-4 text-sm font-bold uppercase tracking-tighter">
+                       <div className="w-2 h-2 bg-[#B2FF00]"></div>
+                       {item}
+                     </li>
+                   ))}
+                </ul>
+                <button onClick={handleCtaClick} className="w-full mt-12 bg-[#111111] text-white py-5 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all">
+                  Get Full Strategy
+                </button>
+             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Assessment Form */}
+      <section id="contact" className="py-32 bg-[#F8F9FA]">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-black uppercase mb-4">Site Assessment</h2>
+            <p className="text-gray-500 font-light">Let our analysts check your lot's feasibility for free.</p>
+          </div>
+
+          <div className="bg-white shadow-2xl p-10 lg:p-16 border-t-8 border-[#B2FF00]">
+            {isSubmitted ? (
+              <div className="text-center py-20 space-y-6">
+                <div className="w-24 h-24 bg-lime-50 text-black rounded-full flex items-center justify-center mx-auto border-2 border-[#B2FF00]">
+                  <MailCheck className="w-12 h-12" />
+                </div>
+                <h3 className="text-4xl font-black uppercase">Request Received</h3>
+                <p className="text-gray-500 max-w-sm mx-auto">Our team is reviewing {formData.address}. We will contact you at {formData.email} within 24 hours.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Owner Name</label>
+                    <input required name="name" value={formData.name} onChange={handleInputChange} type="text" placeholder="FULL NAME" className="w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Email Contact</label>
+                    <input required name="email" value={formData.email} onChange={handleInputChange} type="email" placeholder="EMAIL ADDRESS" className="w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all" />
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Property Location</label>
+                  <input required name="address" value={formData.address} onChange={handleInputChange} type="text" placeholder="123 STREET, CHARLOTTE, NC" className="w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold placeholder:text-gray-300 transition-all" />
+                </div>
+                <div className="space-y-3">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Investment Goal</label>
+                  <select name="goal" value={formData.goal} onChange={handleInputChange} className="w-full p-4 border-b-2 border-gray-100 focus:border-[#B2FF00] outline-none font-bold text-gray-400 cursor-pointer">
+                    <option>CASH FLOW / RENTAL</option>
+                    <option>FAMILY / MULTI-GEN</option>
+                    <option>CREATIVE STUDIO</option>
+                  </select>
+                </div>
+                <button disabled={isSubmitting} className="w-full bg-[#111111] text-white py-6 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all flex items-center justify-center gap-4 disabled:opacity-50">
+                  {isSubmitting ? <><Loader2 className="animate-spin" /> Verifying Site...</> : 'Send Assessment Request'}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Brand Footer */}
+      <footer className="py-20 bg-[#111111] text-white border-t border-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-[#B2FF00] rounded-sm"></div>
+              <span className="text-3xl font-black tracking-[0.2em] uppercase">CASA</span>
+            </div>
+            <div className="flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+              <a href={instagramProfile} target="_blank" rel="noreferrer" className="hover:text-[#B2FF00]">Instagram</a>
+              <a href="#" className="hover:text-[#B2FF00]">LinkedIn</a>
+              <a href="#" className="hover:text-[#B2FF00]">Pinterest</a>
+            </div>
+            <p className="text-[10px] uppercase tracking-widest text-gray-600">© 2024 CASA ADU DEVELOPMENTS</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
