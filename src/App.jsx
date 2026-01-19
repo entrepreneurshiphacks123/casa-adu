@@ -2,11 +2,16 @@ import React, { useState, useEffect } from 'react';
 import {
   Home,
   TrendingUp,
-  ShieldCheck,
+  Users,
+  CheckCircle2,
+  MapPin,
   ArrowRight,
   Menu,
   X,
   ChevronRight,
+  ShieldCheck,
+  Hammer,
+  FileText,
   Loader2,
   MailCheck
 } from 'lucide-react';
@@ -20,20 +25,32 @@ const App = () => {
   const dmLink = "https://www.instagram.com/direct/t/17842404066666262/";
   const instagramProfile = "https://www.instagram.com/casaadu";
 
-  // Form State (goal default now matches select options)
+  // Formspree endpoint
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoobpyp";
+
+  // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     address: '',
     goal: 'CASH FLOW / RENTAL'
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
 
+  // Brand Colors Updated to Neon Lime
+  const colors = {
+    primary: '#B2FF00',
+    dark: '#111111',
+    light: '#F8F9FA',
+    white: '#FFFFFF'
+  };
+
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,40 +65,60 @@ const App = () => {
     }
   };
 
-  const handleCtaClick = () => window.open(dmLink, '_blank');
+  const handleCtaClick = () => {
+    window.open(dmLink, '_blank');
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // ✅ NEW: send form to backend endpoint that emails both recipients
+  // ✅ Formspree submit (AJAX) — keeps your loader + success state
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError('');
     setIsSubmitting(true);
 
     try {
-      const res = await fetch('/api/submit-application', {
+      const payload = new FormData();
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('address', formData.address);
+      payload.append('goal', formData.goal);
+
+      // Optional: helps you reply directly to the lead in the email client
+      payload.append('_replyto', formData.email);
+
+      // Optional: custom subject line in your inbox
+      payload.append('_subject', `New CASA Site Assessment — ${formData.name} (${formData.goal})`);
+
+      const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: payload,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
 
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        throw new Error(data?.error || 'Failed to submit. Please try again.');
+        const msg =
+          data?.errors?.[0]?.message ||
+          data?.error ||
+          'Something went wrong. Please try again.';
+        throw new Error(msg);
       }
 
       setIsSubmitting(false);
       setIsSubmitted(true);
 
-      // keep submitted state visible briefly, then reset
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: '', email: '', address: '', goal: 'CASH FLOW / RENTAL' });
       }, 5000);
+
     } catch (err) {
       setIsSubmitting(false);
       setSubmitError(err?.message || 'Something went wrong. Please try again.');
@@ -170,6 +207,7 @@ const App = () => {
                 onError={(e) => handleImgError(e)}
               />
             </div>
+            {/* Dynamic Badge */}
             <div className="absolute -bottom-10 -right-6 bg-[#111111] text-white p-8 shadow-2xl hidden md:block border-l-4 border-[#B2FF00]">
               <div className="flex flex-col gap-1">
                 <span className="text-[#B2FF00] font-black text-4xl">35%</span>
@@ -312,6 +350,10 @@ const App = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Optional hidden fields for Formspree */}
+                <input type="hidden" name="_subject" value={`New CASA Site Assessment — ${formData.name} (${formData.goal})`} />
+                <input type="hidden" name="_replyto" value={formData.email} />
+
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Owner Name</label>
@@ -367,9 +409,8 @@ const App = () => {
                 </div>
 
                 {submitError && (
-                  <div className="border-l-4 border-red-500 bg-red-50 p-4">
-                    <p className="text-sm font-bold text-red-700">Submission failed</p>
-                    <p className="text-sm text-red-600">{submitError}</p>
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 text-sm text-red-700 font-semibold">
+                    {submitError}
                   </div>
                 )}
 
@@ -377,7 +418,7 @@ const App = () => {
                   disabled={isSubmitting}
                   className="w-full bg-[#111111] text-white py-6 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all flex items-center justify-center gap-4 disabled:opacity-50"
                 >
-                  {isSubmitting ? <><Loader2 className="animate-spin" /> Sending...</> : 'Send Assessment Request'}
+                  {isSubmitting ? <><Loader2 className="animate-spin" /> Sending Request...</> : 'Send Assessment Request'}
                 </button>
               </form>
             )}
