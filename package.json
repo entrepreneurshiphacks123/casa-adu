@@ -1,0 +1,7 @@
+{
+  "name": "casa-adu",
+  "private": true,
+  "scripts": {
+    "build": "echo \"no build needed\""
+  }
+}
