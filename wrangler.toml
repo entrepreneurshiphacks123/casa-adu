@@ -1,7 +1,5 @@
 name = "casa-adu-app"
 compatibility_date = "2024-04-05"
 
-# This configuration tells Cloudflare to serve your React build folder
 [assets]
 directory = "./dist"
-binding = "ASSETS"
