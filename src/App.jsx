@@ -1,8 +1,3 @@
-// App.jsx (or App.tsx) — updated to:
-// 1) CTA buttons scroll to #contact (no more Instagram DM)
-// 2) Form submits to your own backend endpoint: /api/submit-assessment
-// 3) Keeps your loader + success state + error handling (no Formspree)
-
 import React, { useState, useEffect } from 'react';
 import {
   Home,
@@ -21,13 +16,16 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [rentValue, setRentValue] = useState(1800);
 
+  // Social link (still used in footer)
+  const instagramProfile = "https://www.instagram.com/casaadu";
+
   // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     address: '',
     goal: 'CASH FLOW / RENTAL',
-    // honeypot (spam trap) — should stay empty
+    // Honeypot spam-trap field (hidden). Humans won’t fill it.
     website: ''
   });
 
@@ -35,9 +33,6 @@ const App = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
   const [submittedSnapshot, setSubmittedSnapshot] = useState(null);
-
-  // Social links (still used in footer)
-  const instagramProfile = "https://www.instagram.com/casaadu";
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -55,7 +50,7 @@ const App = () => {
     }
   };
 
-  // ✅ All CTAs now scroll to the form
+  // ✅ All CTAs now scroll to the form section
   const handleCtaClick = () => scrollTo('contact');
 
   const handleInputChange = (e) => {
@@ -68,7 +63,7 @@ const App = () => {
     setSubmitError('');
     setIsSubmitting(true);
 
-    const snapshot = {
+    const payload = {
       name: formData.name.trim(),
       email: formData.email.trim(),
       address: formData.address.trim(),
@@ -80,19 +75,19 @@ const App = () => {
       const res = await fetch('/api/submit-assessment', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(snapshot)
+        body: JSON.stringify(payload),
       });
 
       const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
         throw new Error(data?.error || 'Something went wrong. Please try again.');
       }
 
-      setSubmittedSnapshot(snapshot);
+      setSubmittedSnapshot(payload);
       setIsSubmitting(false);
       setIsSubmitted(true);
 
-      // reset form after a beat (success screen uses submittedSnapshot)
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({
@@ -176,7 +171,7 @@ const App = () => {
         )}
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section id="hero" className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden bg-[#F8F9FA]">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
           <div className="z-10">
@@ -214,7 +209,6 @@ const App = () => {
                 onError={(e) => handleImgError(e)}
               />
             </div>
-
             <div className="absolute -bottom-10 -right-6 bg-[#111111] text-white p-8 shadow-2xl hidden md:block border-l-4 border-[#B2FF00]">
               <div className="flex flex-col gap-1">
                 <span className="text-[#B2FF00] font-black text-4xl">35%</span>
@@ -225,7 +219,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Modern Value Prop */}
+      {/* Value Props */}
       <section className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-20">
@@ -247,7 +241,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Signature Models Grid */}
+      {/* Units */}
       <section id="units" className="py-32 bg-[#F8F9FA]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-20">
@@ -289,7 +283,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* ROI Impact */}
+      {/* ROI */}
       <section id="roi" className="py-32 bg-[#111111] text-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-20 items-center">
           <div className="flex-1">
@@ -327,6 +321,13 @@ const App = () => {
                 </div>
               </div>
             </div>
+
+            <button
+              onClick={handleCtaClick}
+              className="mt-12 bg-[#B2FF00] text-black px-10 py-5 font-bold uppercase tracking-widest hover:bg-white transition-all"
+            >
+              Get Free Assessment
+            </button>
           </div>
 
           <div className="flex-1 w-full">
@@ -352,14 +353,14 @@ const App = () => {
                 onClick={handleCtaClick}
                 className="w-full mt-12 bg-[#111111] text-white py-5 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all"
               >
-                Get Full Strategy
+                Request Assessment
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Assessment Form */}
+      {/* Contact */}
       <section id="contact" className="py-32 bg-[#F8F9FA]">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -381,7 +382,7 @@ const App = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Honeypot field (hidden) — bots fill it, humans won't */}
+                {/* Honeypot spam trap */}
                 <div className="hidden">
                   <label>Website</label>
                   <input
@@ -472,7 +473,7 @@ const App = () => {
         </div>
       </section>
 
-      {/* Brand Footer */}
+      {/* Footer */}
       <footer className="py-20 bg-[#111111] text-white border-t border-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
