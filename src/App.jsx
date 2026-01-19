@@ -1,17 +1,17 @@
+// App.jsx (or App.tsx) — updated to:
+// 1) CTA buttons scroll to #contact (no more Instagram DM)
+// 2) Form submits to your own backend endpoint: /api/submit-assessment
+// 3) Keeps your loader + success state + error handling (no Formspree)
+
 import React, { useState, useEffect } from 'react';
 import {
   Home,
   TrendingUp,
-  Users,
-  CheckCircle2,
-  MapPin,
   ArrowRight,
   Menu,
   X,
   ChevronRight,
   ShieldCheck,
-  Hammer,
-  FileText,
   Loader2,
   MailCheck
 } from 'lucide-react';
@@ -21,36 +21,26 @@ const App = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [rentValue, setRentValue] = useState(1800);
 
-  // Links
-  const dmLink = "https://www.instagram.com/direct/t/17842404066666262/";
-  const instagramProfile = "https://www.instagram.com/casaadu";
-
-  // Formspree endpoint
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xkoobpyp";
-
   // Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     address: '',
-    goal: 'CASH FLOW / RENTAL'
+    goal: 'CASH FLOW / RENTAL',
+    // honeypot (spam trap) — should stay empty
+    website: ''
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [submittedSnapshot, setSubmittedSnapshot] = useState(null);
 
-  // Brand Colors Updated to Neon Lime
-  const colors = {
-    primary: '#B2FF00',
-    dark: '#111111',
-    light: '#F8F9FA',
-    white: '#FFFFFF'
-  };
+  // Social links (still used in footer)
+  const instagramProfile = "https://www.instagram.com/casaadu";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -58,65 +48,61 @@ const App = () => {
   const annualIncome = rentValue * 12;
 
   const scrollTo = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
   };
 
-  const handleCtaClick = () => {
-    window.open(dmLink, '_blank');
-  };
+  // ✅ All CTAs now scroll to the form
+  const handleCtaClick = () => scrollTo('contact');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Formspree submit (AJAX) — keeps your loader + success state
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError('');
     setIsSubmitting(true);
 
+    const snapshot = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      address: formData.address.trim(),
+      goal: formData.goal,
+      website: formData.website // honeypot
+    };
+
     try {
-      const payload = new FormData();
-      payload.append('name', formData.name);
-      payload.append('email', formData.email);
-      payload.append('address', formData.address);
-      payload.append('goal', formData.goal);
-
-      // Optional: helps you reply directly to the lead in the email client
-      payload.append('_replyto', formData.email);
-
-      // Optional: custom subject line in your inbox
-      payload.append('_subject', `New CASA Site Assessment — ${formData.name} (${formData.goal})`);
-
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch('/api/submit-assessment', {
         method: 'POST',
-        body: payload,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(snapshot)
       });
 
       const data = await res.json().catch(() => ({}));
-
       if (!res.ok) {
-        const msg =
-          data?.errors?.[0]?.message ||
-          data?.error ||
-          'Something went wrong. Please try again.';
-        throw new Error(msg);
+        throw new Error(data?.error || 'Something went wrong. Please try again.');
       }
 
+      setSubmittedSnapshot(snapshot);
       setIsSubmitting(false);
       setIsSubmitted(true);
 
+      // reset form after a beat (success screen uses submittedSnapshot)
       setTimeout(() => {
         setIsSubmitted(false);
-        setFormData({ name: '', email: '', address: '', goal: 'CASH FLOW / RENTAL' });
+        setFormData({
+          name: '',
+          email: '',
+          address: '',
+          goal: 'CASH FLOW / RENTAL',
+          website: ''
+        });
+        setSubmittedSnapshot(null);
       }, 5000);
 
     } catch (err) {
@@ -126,7 +112,9 @@ const App = () => {
   };
 
   const handleImgError = (e, fallbackUrl) => {
-    e.target.src = fallbackUrl || "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=1000";
+    e.target.src =
+      fallbackUrl ||
+      "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80&w=1000";
   };
 
   return (
@@ -170,8 +158,20 @@ const App = () => {
         {isMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white border-t border-gray-100 flex flex-col p-8 gap-6 md:hidden shadow-2xl">
             {['Process', 'Units', 'ROI', 'Contact'].map((item) => (
-              <button key={item} onClick={() => scrollTo(item.toLowerCase())} className="text-left text-xl font-bold uppercase tracking-widest">{item}</button>
+              <button
+                key={item}
+                onClick={() => scrollTo(item.toLowerCase())}
+                className="text-left text-xl font-bold uppercase tracking-widest"
+              >
+                {item}
+              </button>
             ))}
+            <button
+              onClick={handleCtaClick}
+              className="mt-2 bg-[#111111] text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all"
+            >
+              Get Assessment
+            </button>
           </div>
         )}
       </nav>
@@ -190,14 +190,21 @@ const App = () => {
               Premium ADU architecture designed for Charlotte's new urban landscape. High-yield, turnkey backyard developments.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <button onClick={handleCtaClick} className="bg-[#B2FF00] text-black px-10 py-5 font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#111111] hover:text-white transition-all shadow-xl shadow-lime-500/20">
+              <button
+                onClick={handleCtaClick}
+                className="bg-[#B2FF00] text-black px-10 py-5 font-bold uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-[#111111] hover:text-white transition-all shadow-xl shadow-lime-500/20"
+              >
                 Start Assessment <ArrowRight className="w-5 h-5" />
               </button>
-              <button onClick={() => scrollTo('units')} className="bg-white border-2 border-[#111111] text-[#111111] px-10 py-5 font-bold uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-all">
+              <button
+                onClick={() => scrollTo('units')}
+                className="bg-white border-2 border-[#111111] text-[#111111] px-10 py-5 font-bold uppercase tracking-widest hover:bg-[#111111] hover:text-white transition-all"
+              >
                 View Specs
               </button>
             </div>
           </div>
+
           <div className="relative group">
             <div className="aspect-[4/5] rounded-none overflow-hidden shadow-[40px_40px_0px_rgba(178,255,0,0.15)] bg-gray-200">
               <img
@@ -207,7 +214,7 @@ const App = () => {
                 onError={(e) => handleImgError(e)}
               />
             </div>
-            {/* Dynamic Badge */}
+
             <div className="absolute -bottom-10 -right-6 bg-[#111111] text-white p-8 shadow-2xl hidden md:block border-l-4 border-[#B2FF00]">
               <div className="flex flex-col gap-1">
                 <span className="text-[#B2FF00] font-black text-4xl">35%</span>
@@ -228,7 +235,9 @@ const App = () => {
               { label: "Manage", title: "Total Turnkey", desc: "We handle the entire Charlotte UDO permitting process from start to finish.", icon: <ShieldCheck /> },
             ].map((prop, i) => (
               <div key={i} className="group cursor-default">
-                <div className="text-[#B2FF00] mb-6 bg-black w-12 h-12 flex items-center justify-center rounded-sm group-hover:scale-110 transition-transform">{prop.icon}</div>
+                <div className="text-[#B2FF00] mb-6 bg-black w-12 h-12 flex items-center justify-center rounded-sm group-hover:scale-110 transition-transform">
+                  {prop.icon}
+                </div>
                 <span className="text-[10px] font-black uppercase tracking-[4px] text-gray-400 block mb-2">{prop.label}</span>
                 <h3 className="text-3xl font-black uppercase mb-4">{prop.title}</h3>
                 <p className="text-gray-500 leading-relaxed font-light">{prop.desc}</p>
@@ -253,9 +262,18 @@ const App = () => {
             ].map((unit, i) => (
               <div key={i} className="group">
                 <div className="relative aspect-square overflow-hidden mb-6 bg-gray-200">
-                  <img src={unit.img} alt={unit.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                  <img
+                    src={unit.img}
+                    alt={unit.name}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-[#111111]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <button onClick={handleCtaClick} className="bg-[#B2FF00] text-black px-8 py-3 font-black text-xs uppercase tracking-widest shadow-xl">Get Quote</button>
+                    <button
+                      onClick={handleCtaClick}
+                      className="bg-[#B2FF00] text-black px-8 py-3 font-black text-xs uppercase tracking-widest shadow-xl"
+                    >
+                      Get Quote
+                    </button>
                   </div>
                 </div>
                 <div className="flex justify-between items-end border-b-2 border-gray-100 pb-4 group-hover:border-[#B2FF00] transition-colors">
@@ -275,8 +293,12 @@ const App = () => {
       <section id="roi" className="py-32 bg-[#111111] text-white">
         <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-20 items-center">
           <div className="flex-1">
-            <h2 className="text-5xl font-black uppercase mb-8 leading-tight">Investment <br /><span className="text-[#B2FF00]">Forecasting</span></h2>
-            <p className="text-gray-400 text-lg mb-12 font-light">Charlotte's real estate market is accelerating. A backyard unit isn't just space—it's a financial asset.</p>
+            <h2 className="text-5xl font-black uppercase mb-8 leading-tight">
+              Investment <br /><span className="text-[#B2FF00]">Forecasting</span>
+            </h2>
+            <p className="text-gray-400 text-lg mb-12 font-light">
+              Charlotte's real estate market is accelerating. A backyard unit isn't just space—it's a financial asset.
+            </p>
 
             <div className="space-y-10">
               <div className="space-y-4">
@@ -285,7 +307,11 @@ const App = () => {
                   <span className="text-[#B2FF00] font-black">${rentValue}/mo</span>
                 </div>
                 <input
-                  type="range" min="1200" max="4500" step="100" value={rentValue}
+                  type="range"
+                  min="1200"
+                  max="4500"
+                  step="100"
+                  value={rentValue}
                   onChange={(e) => setRentValue(parseInt(e.target.value))}
                   className="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-[#B2FF00]"
                 />
@@ -302,6 +328,7 @@ const App = () => {
               </div>
             </div>
           </div>
+
           <div className="flex-1 w-full">
             <div className="bg-white text-[#111111] p-12 relative shadow-[20px_20px_0px_rgba(178,255,0,1)]">
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#B2FF00] flex items-center justify-center">
@@ -321,7 +348,10 @@ const App = () => {
                   </li>
                 ))}
               </ul>
-              <button onClick={handleCtaClick} className="w-full mt-12 bg-[#111111] text-white py-5 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all">
+              <button
+                onClick={handleCtaClick}
+                className="w-full mt-12 bg-[#111111] text-white py-5 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all"
+              >
                 Get Full Strategy
               </button>
             </div>
@@ -345,14 +375,24 @@ const App = () => {
                 </div>
                 <h3 className="text-4xl font-black uppercase">Request Received</h3>
                 <p className="text-gray-500 max-w-sm mx-auto">
-                  Our team is reviewing {formData.address}. We will contact you at {formData.email} within 24 hours.
+                  Our team is reviewing <span className="font-semibold">{submittedSnapshot?.address}</span>. We will contact you at{" "}
+                  <span className="font-semibold">{submittedSnapshot?.email}</span> within 24 hours.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
-                {/* Optional hidden fields for Formspree */}
-                <input type="hidden" name="_subject" value={`New CASA Site Assessment — ${formData.name} (${formData.goal})`} />
-                <input type="hidden" name="_replyto" value={formData.email} />
+                {/* Honeypot field (hidden) — bots fill it, humans won't */}
+                <div className="hidden">
+                  <label>Website</label>
+                  <input
+                    name="website"
+                    value={formData.website}
+                    onChange={handleInputChange}
+                    type="text"
+                    autoComplete="off"
+                    tabIndex={-1}
+                  />
+                </div>
 
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="space-y-3">
@@ -418,7 +458,13 @@ const App = () => {
                   disabled={isSubmitting}
                   className="w-full bg-[#111111] text-white py-6 font-black uppercase tracking-widest hover:bg-[#B2FF00] hover:text-black transition-all flex items-center justify-center gap-4 disabled:opacity-50"
                 >
-                  {isSubmitting ? <><Loader2 className="animate-spin" /> Sending Request...</> : 'Send Assessment Request'}
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="animate-spin" /> Sending Request...
+                    </>
+                  ) : (
+                    'Send Assessment Request'
+                  )}
                 </button>
               </form>
             )}
